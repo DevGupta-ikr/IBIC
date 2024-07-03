@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: #ffe063;
+        }
+        .container {
+            background: #fff;
+            padding: 100px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(42, 34, 0, 0.247);
+            text-align: center;
+        }
+        .drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 50px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .drop-area.dragging {
+            border-color: #947703;
+        }
+        h1 {
+            color: #947703;
+        }
+        #slider {
+            width: 100%;
+        }
+        #output {
+            margin: 10px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            color: #fff;
+            background: #947703;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        select:focus {
+            border-color: #947703;
+        }
+        #customDimensions {
+            display: none;
+            margin-top: 10px;
+        }
+        #customDimensions label {
+            margin-right: 10px;
+        }
+        #customDimensions input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        #customDimensions input[type="number"]:last-child {
+            margin-right: 0;
+        }
+        #aspectRatio {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            font-size: 18px;
+        }
+        #aspectRatio option {
+            background-color: #fff;
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Compressor</h1>
+        <div id="drop-area" class="drop-area">
+            <p>Drag & Drop your image here or <br> <input type="file" id="fileInput" accept="image/*"></p>
+        </div>
+        <label for="slider">Compression Percentage: <span id="output">50</span>%</label>
+        <input type="range" id="slider" min="10" max="90" value="50">
+        <br><br>
+        <label for="aspectRatio">Aspect Ratio:</label>
+        <select id="aspectRatio">
+            <option value="original">Original</option>
+            <option value="1:1">1:1</option>
+            <option value="16:9">16:9</option>
+            <option value="3:4">3:4</option>
+            <option value="9:16">9:16</option>
+            <option value="custom">Custom</option>
+        </select>
+        <br><br>
+        <div id="customDimensions" style="display: none;">
+            <label for="width">Width:</label>
+            <input type="number" id="width" min="10" max="90000" required>
+            <label for="height">Height:</label>
+            <input type="number" id="height" min="10" max="90000" required>
+        </div>
+        <br>
+        <button id="compressButton" class="button" disabled>Compress Image</button>
+        <br><br>
+        <a id="downloadLink" class="button" style="display:none;">Download Compressed Image</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.0.6/dist/compressor.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
